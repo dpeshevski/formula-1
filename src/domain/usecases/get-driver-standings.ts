@@ -1,7 +1,7 @@
 import { GetDriverStandingsModel } from '@/domain/models';
 
 export interface GetDriverStandings {
-  getDriverStandings: () => Promise<GetDriverStandings.Model[]>;
+  getDriverStandings: () => Promise<GetDriverStandings.Model>
 }
 
 export namespace GetDriverStandings {

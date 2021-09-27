@@ -33,7 +33,7 @@ module.exports = merge(common, {
       directory: './public'
     },
     historyApiFallback: true,
-    port: 8081
+    port: 8080
   },
   plugins: [
     new DefinePlugin({
