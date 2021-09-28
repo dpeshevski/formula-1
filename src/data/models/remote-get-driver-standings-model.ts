@@ -5,8 +5,8 @@ import { DriverStanding } from '@/interface/driver-standing';
 
 
 export type RemoteGetDriverStandingsModel = {
-  standing: Standing;
-  data: Response;
+  // standing: Standing;
+  // data: Response;
   MRData: MRData;
-  driverStandings: DriverStanding[];
+  // driverStandings: DriverStanding[];
 }

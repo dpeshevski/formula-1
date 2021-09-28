@@ -4,8 +4,8 @@ import { Response } from '@/interface/response';
 import { DriverStanding } from '@/interface/driver-standing';
 
 export type GetDriverStandingsModel = {
-  standing: Standing;
-  data: Response;
+  // standing: Standing;
+  // data: Response;
   MRData: MRData;
-  driverStandings: DriverStanding[];
+  // driverStandings: DriverStanding[];
 }

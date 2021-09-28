@@ -10,7 +10,7 @@ export type HttpResponse<T = any> = {
   body?: T 
 }
 
-export type HttpMethod = 'GET';
+export type HttpMethod = 'GET' | 'get';
 
 export enum HttpStatusCode {
   ok = 200,
