@@ -19,14 +19,15 @@ const SeasonList: React.FC<Props> = ({ loadSeasonList }: Props) => {
 
   const reload = (): void => setState(state => ({
     seasons: {} as GetDriverStandings.Model,
-    erros: '',
-    reload: !state.reload
+    error: '',
+    reload: !state.reload,
+    isLoading: true,
   }));
 
   const handleError = useErrorHandler((error: Error) => {
     setState(state => ({
       ...state,
-      erros: error.message
+      error: error.message
     }));
   });
   
@@ -35,8 +36,10 @@ const SeasonList: React.FC<Props> = ({ loadSeasonList }: Props) => {
   useEffect(() => resetSeasonListState(), []);
 
   useEffect(() => {
+    setState(state => ({ ...state, isLoading: true }));
+
     loadSeasonList.getDriverStandings()
-      .then(seasons => setState(state => ({ ...state, seasons })))
+      .then(seasons => setState(state => ({ ...state, seasons, isLoading: false})))
       .catch(handleError);
   }, [state.reload]);
 
@@ -44,12 +47,10 @@ const SeasonList: React.FC<Props> = ({ loadSeasonList }: Props) => {
     <div className={styles.seasonsListWrap}>
       <Header />
       <div className={styles.contentWrap}>
-        <h1>Formula One World Championship</h1>
-        {
-          state.erros
-          ? <Error error={state.erros} reload={reload} />
-          : <List mrData={state.seasons} /> 
-        }
+        {!state.isLoading && <h1>Formula One World Championship</h1>}
+        {state.seasons && <List mrData={state.seasons}/>}
+        {state.isLoading && <Loading />}
+        {state.error && <Error error={state.error} reload={reload} />}
       </div>
       <Footer />
     </div>

@@ -69,7 +69,10 @@
 @media only screen and (max-width: 600px) {
   .itemWrap {
     .heading {
-      flex-direction: column;
+      flex-direction: column-reverse;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
   }
 }

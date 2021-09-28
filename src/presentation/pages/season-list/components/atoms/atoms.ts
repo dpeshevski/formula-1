@@ -6,8 +6,9 @@ const state = {
   key: 'getDriverStandingsState',
   default: {
     seasons: {} as GetDriverStandings.Model,
-    erros: '',
-    reload: false
+    error: '',
+    reload: false,
+    isLoading: false
   }
 }
 

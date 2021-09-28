@@ -13,15 +13,13 @@ type Props = {
 
 const List: React.FC<Props> = ({ mrData }: Props) => {
   return (
-    <ul className={styles.listWrap} data-testid="seasons-list">
-      {
-        mrData.MRData?.StandingsTable?.StandingsLists.length
-        ?
+    <div>
+      <ul className={styles.listWrap} data-testid="seasons-list">
+        {
           mrData.MRData?.StandingsTable?.StandingsLists.map((standingList) => <Item key={standingList.season} season={standingList.season} driverStandings={standingList.DriverStandings} />)
-        : 
-          <Loading />
-      }
-    </ul>
+        }
+      </ul>
+    </div>
   )
 }
 
