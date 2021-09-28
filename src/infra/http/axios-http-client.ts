@@ -18,8 +18,8 @@ export class AxiosHttpClient implements HttpClient {
     }
 
     return {
-      statusCode: response.status,
-      body: response.data,
+      statusCode: response?.status,
+      body: response?.data,
     }
   }
 }

@@ -1,15 +1,9 @@
 import faker from 'faker';
 
-import { RemoteGetDriverStandings } from '@/data/usecases';
+import { GetChampionForYear } from '@/domain/usecases';
 
-export const mockRemoteGetDriverStandingsModel = (): RemoteGetDriverStandings.Model => ({
+export const mockGetChampionForYearModel = (): GetChampionForYear.Model => ({
   MRData: {
-    xmlns: faker.random.word(),
-    series: faker.random.word(),
-    url: faker.internet.url(),
-    limit: faker.random.word(),
-    offset: faker.random.word(),
-    total: faker.random.word(),
     StandingsTable:
       {
         season: faker.random.word(),
@@ -46,3 +40,13 @@ export const mockRemoteGetDriverStandingsModel = (): RemoteGetDriverStandings.Mo
     },
   },
 })
+
+export class GetChampionForYearSpy implements GetChampionForYear {
+  champion = mockGetChampionForYearModel();
+  callsCount = 0;
+
+  async getChampionForYear (): Promise<GetChampionForYear.Model> {
+    this.callsCount++;
+    return this.champion;
+  }
+}

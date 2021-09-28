@@ -1,8 +1,8 @@
 import faker from 'faker';
 
-import { RemoteGetResultsForYear } from '@/data/usecases';
+import { GetResultsForYear } from '@/domain/usecases';
 
-export const mockRemoteGetResultsForYearModel = (): RemoteGetResultsForYear.Model => ({
+export const mockGetResultsForYearModel = (): GetResultsForYear.Model => ({
   MRData: {
     RaceTable: {
       season: faker.random.word(),
@@ -93,3 +93,13 @@ export const mockRemoteGetResultsForYearModel = (): RemoteGetResultsForYear.Mode
     }
   },
 })
+
+export class GetResultsForYearSpy implements GetResultsForYear {
+  results = mockGetResultsForYearModel();
+  callsCount = 0;
+
+  async getResultsForYear (): Promise<GetResultsForYear.Model> {
+    this.callsCount++;
+    return this.results;
+  }
+}

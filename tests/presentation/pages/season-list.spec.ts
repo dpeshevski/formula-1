@@ -9,20 +9,27 @@ import { renderWithHistory } from '@/tests/presentation/mocks'
 
 type SutTypes = {
   getDriverStandingsSpy: GetDriverStandingsSpy,
-  history: MemoryHistory
+  history: MemoryHistory,
+  renderPage: void
 }
 
 const makeSut = (getDriverStandingsSpy = new GetDriverStandingsSpy()): SutTypes => {
-  const history = createMemoryHistory({ initialEntries: ['/seasons'] });
+  const history = createMemoryHistory({ initialEntries: ['/', '/seasons'] })
+  
+  const renderPage = renderWithHistory({
+    history,
+    Page: () => SeasonList({ loadSeasonList: getDriverStandingsSpy })
+  })
 
   return {
     getDriverStandingsSpy,
-    history
+    history,
+    renderPage
   }
 }
 
 describe('SeasonList Component', () => {
-  test('Should call GetDriverStandings', async () => {
+  test('Should call LoadSeasonList', async () => {
     const { getDriverStandingsSpy } = makeSut();
 
     expect(getDriverStandingsSpy.callsCount).toBe(1);
@@ -31,11 +38,36 @@ describe('SeasonList Component', () => {
 
   test('Should render SeasonItem on success', async () => {
     makeSut();
+    const surveyList = screen.getByTestId('seasons-list');
+    await waitFor(() => surveyList);
 
-    const seasonList = screen.getByTestId('season-list');
-    await waitFor(() => seasonList);
+    expect(surveyList.querySelectorAll('li.driverStandingsItemWrap')).toHaveLength(1);
+    expect(screen.queryByTestId('error')).not.toBeInTheDocument();
+  })
 
-    expect(seasonList.querySelectorAll('li.season-item')).toHaveLength(11);
-    expect(screen.queryByTestId('error')).not.toBeInTheDocument()
+  test('Should render error on UnexpectedError', async () => {
+    const getDriverStandings = new GetDriverStandingsSpy();
+    const error = new UnexpectedError();
+
+    jest.spyOn(getDriverStandings, 'getDriverStandings').mockRejectedValueOnce(error);
+    makeSut(getDriverStandings);
+    await waitFor(() => screen.getByRole('heading'));
+
+    expect(screen.queryByTestId('seasons-list')).not.toBeInTheDocument()
+    expect(screen.getByTestId('error')).toHaveTextContent(error.message)
+  })
+
+  test('Should call LoadSeasonList on reload', async () => {
+    const getDriverStandings = new GetDriverStandingsSpy();
+
+    jest.spyOn(getDriverStandings, 'getDriverStandings').mockRejectedValueOnce(new UnexpectedError());
+
+    makeSut(getDriverStandings);
+    await waitFor(() => screen.getByRole('heading'));
+
+    fireEvent.click(screen.getByTestId('reload'));
+
+    expect(getDriverStandings.callsCount).toBe(1);
+    await waitFor(() => screen.getByRole('heading'));
   })
 })
