@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useRecoilState, useResetRecoilState } from 'recoil';
 
-import styles from './season-list-styles.scss'
+import useStyles from './season-list-styles.scss'
 
 import { Header, Footer, Error, Loading } from '@/presentation/components';
 
@@ -44,9 +44,9 @@ const SeasonList: React.FC<Props> = ({ loadSeasonList }: Props) => {
   }, [state.reload]);
 
   return (
-    <div className={styles.seasonsListWrap}>
+    <div className={useStyles.seasonsListWrap}>
       <Header />
-      <div className={styles.contentWrap}>
+      <div className={useStyles.contentWrap}>
         {!state.isLoading && <h1>Formula One World Championship</h1>}
         {state.seasons && <List mrData={state.seasons}/>}
         {state.isLoading && <Loading />}

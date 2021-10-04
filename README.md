@@ -1,46 +1,40 @@
-# Getting Started with Create React App
+# Formula 1 - World Champions
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+In this application you can see the list of winners from 2005 to 2015. The years are shown as timeline in descending order. When clicking on one item, season page is shown with all rounds for selected year. Additionally, the world champion for the selected year, will be highlighed on each card/round that he won that year.
+
+The application is developed using React Library and it uses the latest version (17.0.2).
+
+## Prerequisites
+In order to run the application, first, you need to have installed Node.js and NPM
 
 ## Available Scripts
 
-In the project directory, you can run:
+To run the application, you need to install all of the dependencies using the following command:
 
-### `yarn start`
+### `npm install` or `yarn`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+When the dependencies are installed, run the application using:
 
-The page will reload if you make edits.\
+### `npm run lint` or `yarn lint`
+Use for linter development
 You will also see any lint errors in the console.
 
-### `yarn test`
+### `npm run link:fix` or `yarn link:fix`
+Use this command to fix the lint issue.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `yarn dev:base`
+Start webpack development server.
 
-### `yarn build`
+### `npm run dev` or `yarn dev`
+Runs the app in the development mode.\
+Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `npm run test` or `yarn test` (and `yarn test:watch` and `yarn test:ci` and `yarn test:ci` and `test:coveralls`)
+Launches the test runner in the interactive watch mode.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `npm run test:cypress` or `yarn test:cypress` (and `yarn test:cypress:run` and `yarn test:cypress:ci`)
+Launches the E2E test runner in the interactive watch mode.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Backend
+The application uses the Ergast API which can be found here https://ergast.com/mrd/

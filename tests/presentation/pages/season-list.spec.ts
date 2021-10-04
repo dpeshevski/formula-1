@@ -1,5 +1,5 @@
 import { createMemoryHistory, MemoryHistory } from 'history';
-import { screen, waitFor, fireEvent } from '@testing-library/react';
+import { screen, waitFor, fireEvent, cleanup } from '@testing-library/react';
 
 import { SeasonList } from '@/presentation/pages';
 import { UnexpectedError } from '@/domain/errors';
@@ -10,13 +10,13 @@ import { renderWithHistory } from '@/tests/presentation/mocks'
 type SutTypes = {
   getDriverStandingsSpy: GetDriverStandingsSpy,
   history: MemoryHistory,
-  renderPage: void
+  setMock: (mock: any) => void
 }
 
 const makeSut = (getDriverStandingsSpy = new GetDriverStandingsSpy()): SutTypes => {
   const history = createMemoryHistory({ initialEntries: ['/', '/seasons'] })
   
-  const renderPage = renderWithHistory({
+  const { setMock } = renderWithHistory({
     history,
     Page: () => SeasonList({ loadSeasonList: getDriverStandingsSpy })
   })
@@ -24,24 +24,35 @@ const makeSut = (getDriverStandingsSpy = new GetDriverStandingsSpy()): SutTypes 
   return {
     getDriverStandingsSpy,
     history,
-    renderPage
+    setMock
   }
 }
 
 describe('SeasonList Component', () => {
+  afterEach(cleanup)
   test('Should call LoadSeasonList', async () => {
     const { getDriverStandingsSpy } = makeSut();
 
     expect(getDriverStandingsSpy.callsCount).toBe(1);
-    await waitFor(() => screen.getByRole('heading'));
+    await waitFor(() => screen.getByRole('heading'))
   })
 
   test('Should render SeasonItem on success', async () => {
     makeSut();
-    const surveyList = screen.getByTestId('seasons-list');
-    await waitFor(() => surveyList);
+    const sesonsList = screen.getByTestId('seasons-list');
+    await waitFor(() => sesonsList);
+    
+    expect(screen.queryByTestId('loading')).not.toBeInTheDocument()
 
-    expect(surveyList.querySelectorAll('li.driverStandingsItemWrap')).toHaveLength(1);
+    const driverFullName = screen.getByTestId('driver-full-name');
+    await waitFor(() => driverFullName);
+
+    const season = screen.getByTestId('year');
+    await waitFor(() => season);
+
+    expect(driverFullName).toHaveTextContent('Lewis Hamilton');
+    expect(season).toHaveTextContent('2015');
+    expect(sesonsList.querySelectorAll('li.driverStandingsItemWrap')).toHaveLength(1);
     expect(screen.queryByTestId('error')).not.toBeInTheDocument();
   })
 
@@ -51,23 +62,21 @@ describe('SeasonList Component', () => {
 
     jest.spyOn(getDriverStandings, 'getDriverStandings').mockRejectedValueOnce(error);
     makeSut(getDriverStandings);
-    await waitFor(() => screen.getByRole('heading'));
+    await waitFor(() => screen.getByTestId('seasons-list'))
 
-    expect(screen.queryByTestId('seasons-list')).not.toBeInTheDocument()
     expect(screen.getByTestId('error')).toHaveTextContent(error.message)
   })
 
   test('Should call LoadSeasonList on reload', async () => {
-    const getDriverStandings = new GetDriverStandingsSpy();
+    const getDriverStandingsSpy = new GetDriverStandingsSpy();
 
-    jest.spyOn(getDriverStandings, 'getDriverStandings').mockRejectedValueOnce(new UnexpectedError());
+    jest.spyOn(getDriverStandingsSpy, 'getDriverStandings').mockRejectedValueOnce(new UnexpectedError());
+    makeSut(getDriverStandingsSpy);
+    await waitFor(() => screen.getByTestId('seasons-list'))
 
-    makeSut(getDriverStandings);
-    await waitFor(() => screen.getByRole('heading'));
-
-    fireEvent.click(screen.getByTestId('reload'));
-
-    expect(getDriverStandings.callsCount).toBe(1);
-    await waitFor(() => screen.getByRole('heading'));
+    fireEvent.click(screen.getByTestId('reload'))
+    expect(getDriverStandingsSpy.callsCount).toBe(1)
+    await waitFor(() => screen.getByTestId('seasons-list'))
+    await waitFor(() => screen.getByRole('heading'))
   })
 })

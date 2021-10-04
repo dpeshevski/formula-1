@@ -9,7 +9,13 @@ type Params = {
   history: MemoryHistory
 }
 
-export const renderWithHistory = ({ Page, history }: Params) => {
+type Result = {
+  setMock: (mock: any) => void
+}
+
+export const renderWithHistory = ({ Page, history }: Params): Result => {
+  const setMock = jest.fn();
+
   render(
     <RecoilRoot>
       <Router history={history}>
@@ -17,4 +23,8 @@ export const renderWithHistory = ({ Page, history }: Params) => {
       </Router>
     </RecoilRoot>
   )
+
+  return {
+    setMock
+  }
 }

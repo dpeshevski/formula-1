@@ -6,7 +6,7 @@ import { SeasonResultData, getSeasonResultState } from '@/presentation/pages/sea
 import { useErrorHandler } from '@/presentation/hooks';
 import { Header, Footer, Error, Loading } from '@/presentation/components';
 
-import styles from './season-result-styles.scss';
+import useStyles from './season-result-styles.scss';
 
 type Props = {
   loadSeasonResult: GetResultsForYear
@@ -42,9 +42,9 @@ const SeasonResult: React.FC<Props> = ({ loadSeasonResult, loadSeasonChampion }:
   }, [state.reload]);
 
   return (
-    <div className={styles.surveyResultWrap}>
+    <div className={useStyles.surveyResultWrap}>
       <Header />
-      <div data-testid="season-result" className={styles.contentWrap}>
+      <div data-testid="season-result" className={useStyles.contentWrap}>
         {state.seasonResult && state.seasonChampion && <SeasonResultData seasonResult={state.seasonResult} seasonChampion={state.seasonChampion}/>}
         {state.isLoading && <Loading />}
         {state.error && <Error error={state.error} reload={reload} />}

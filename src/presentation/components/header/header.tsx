@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 import { Logo } from '@/presentation/components';
 
-import styles from './header-styles.scss';
+import useStyles from './header-styles.scss';
 
 const Header: React.FC = () => {
   return (
-    <header className={styles.headerWrap}>
-      <div className={styles.headerContent}>
+    <header className={useStyles.headerWrap}>
+      <div className={useStyles.headerContent}>
         <Link to="/seasons">
           <Logo />
         </Link>

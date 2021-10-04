@@ -4,42 +4,42 @@ import { GetDriverStandings } from '@/domain/usecases';
 
 export const mockGetDriverStandingsModel = (): GetDriverStandings.Model => ({
   MRData: {
-    xmlns: faker.random.word(),
-    series: faker.random.word(),
-    url: faker.internet.url(),
-    limit: faker.random.word(),
-    offset: faker.random.word(),
-    total: faker.random.word(),
+    xmlns: "http://ergast.com/mrd/1.4",
+    series: "f1",
+    url: "http://ergast.com/api/f1/2015/driverstandings/1.json",
+    limit: "30",
+    offset: "0",
+    total: "1",
     StandingsTable:
       {
-        season: faker.random.word(),
-        driverStandings: faker.random.word(),
+        season: "2015",
+        driverStandings: "1",
         StandingsLists:
           [{
-            season: faker.random.word(),
-            round: faker.random.word(),
+            season: "2015",
+            round: "19",
             DriverStandings:
               [{
-                position: faker.random.word(),
-                positionText: faker.random.word(),
-                points: faker.random.word(),
-                wins: faker.random.word(),
+                position: "1",
+                positionText: "1",
+                points: "381",
+                wins: "10",
                 Driver: {
-                  driverId: faker.random.word(),
-                  permanentNumber: faker.random.word(),
-                  code: faker.random.word(),
-                  url: faker.internet.url(),
-                  givenName: faker.random.word(),
-                  familyName: faker.random.word(),
-                  dateOfBirth: faker.random.word(),
-                  nationality: faker.random.word(),
+                  driverId: "hamilton",
+                  permanentNumber: "44",
+                  code: "HAM",
+                  url: "http://en.wikipedia.org/wiki/Lewis_Hamilton",
+                  givenName: "Lewis",
+                  familyName: "Hamilton",
+                  dateOfBirth: "1985-01-07",
+                  nationality: "British",
                 },
                 Constructors:
                   [{
-                  constructorId: faker.random.word(),
-                  url: faker.internet.url(),
-                  name: faker.random.word(),
-                  nationality: faker.random.word(),
+                  constructorId: "mercedes",
+                  url: "http://en.wikipedia.org/wiki/Mercedes-Benz_in_Formula_One",
+                  name: "Mercedes",
+                  nationality: "German",
                 }]
               }]
           }]

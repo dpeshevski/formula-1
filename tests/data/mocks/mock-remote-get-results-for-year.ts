@@ -32,7 +32,7 @@ export const mockRemoteGetResultsForYearModel = (): RemoteGetResultsForYear.Mode
       Races: [{
         season: faker.random.word(),
         round: faker.random.word(),
-        url: faker.random.word(),
+        url: faker.internet.url(),
         raceName: faker.random.word(),
         Circuit: {
           circuitId: faker.random.word(),
@@ -56,7 +56,7 @@ export const mockRemoteGetResultsForYearModel = (): RemoteGetResultsForYear.Mode
             driverId: faker.random.word(),
             permanentNumber: faker.random.word(),
             code: faker.random.word(),
-            url: faker.random.word(),
+            url: faker.internet.url(),
             givenName: faker.random.word(),
             familyName: faker.random.word(),
             dateOfBirth: faker.random.word(),
@@ -64,7 +64,7 @@ export const mockRemoteGetResultsForYearModel = (): RemoteGetResultsForYear.Mode
           },
           Constructor: {
             constructorId: faker.random.word(),
-            url: faker.random.word(),
+            url: faker.internet.url(),
             name: faker.random.word(),
             nationality: faker.random.word(),
           },

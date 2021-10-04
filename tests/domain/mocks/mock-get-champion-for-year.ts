@@ -2,7 +2,7 @@ import faker from 'faker';
 
 import { GetChampionForYear } from '@/domain/usecases';
 
-export const mockGetChampionForYearModel = (): GetChampionForYear.Model => ({
+export const mockGetChampionForYear = (): GetChampionForYear.Model => ({
   MRData: {
     StandingsTable:
       {
@@ -40,6 +40,8 @@ export const mockGetChampionForYearModel = (): GetChampionForYear.Model => ({
     },
   },
 })
+
+export const mockGetChampionForYearModel = (): GetChampionForYear.Model => mockGetChampionForYear();
 
 export class GetChampionForYearSpy implements GetChampionForYear {
   champion = mockGetChampionForYearModel();

@@ -6,7 +6,7 @@ import { Driver } from '@/interface/driver';
 
 import { IconName, Icon } from '@/presentation/components';
 
-import styles from './item-styles.scss';
+import useStyles from './item-styles.scss';
 
 type Props = {
   race: Race
@@ -23,34 +23,34 @@ const Item: React.FC<Props> = ({ driver, race }: Props) => {
   const iconName = makeItemAsChampion && IconName.trophy;
 
   return (
-    <li className={styles.itemWrap}>
+    <li className={useStyles.itemWrap}>
 
-      <div className={styles.heading}>
+      <div className={useStyles.heading}>
         <p>
-          <a className={styles.link} href={race.url}>{race.raceName}</a> 
+          <a data-testid="race-name" className={useStyles.link} href={race.url}>{race.raceName}</a> 
           <span> - </span>
-          <span>{race.Circuit.circuitName}</span>
+          <span data-testid="circuit-name">{race.Circuit.circuitName}</span>
         </p>
 
-        <span className={styles.round}>Round {race.round}</span>
+        <span data-testid="race-round" className={useStyles.round}>Round {race.round}</span>
       </div>
 
-      {makeItemAsChampion && <Icon className={styles.iconWrap} iconName={iconName} />}
+      {makeItemAsChampion && <Icon className={useStyles.iconWrap} iconName={iconName} />}
 
-      <div className={styles.content}>
-        <div className={styles.center}>
+      <div className={useStyles.content}>
+        <div className={useStyles.center}>
           <span>Date</span>
-          <span>{dateOfRace}</span>
+          <span data-testid="date-of-race">{dateOfRace}</span>
         </div>
         
-        <div className={styles.center}>
+        <div className={useStyles.center}>
           <span>Winner</span>
-          <a data-testid="driver-full-name" className={styles.link} href={results[0].Driver.url}>{driverFullName}</a>
+          <a data-testid="driver-full-name" className={useStyles.link} href={results[0].Driver.url}>{driverFullName}</a>
         </div>
 
-        <div className={styles.center}>
+        <div className={useStyles.center}>
           <span>Finish Time</span>
-          <span>{results[0].Time.time}</span>
+          <span data-testid="race-time">{results[0].Time.time}</span>
         </div>
       </div>
     </li>

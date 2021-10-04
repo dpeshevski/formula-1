@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './error-styles.scss';
+import useStyles from './error-styles.scss';
 
 type Props = {
   error: string
@@ -9,7 +9,7 @@ type Props = {
 
 const Error: React.FC<Props> = ({ error, reload }: Props) => {
   return (
-    <div className={styles.errorWrap}>
+    <div className={useStyles.errorWrap}>
       <span data-testid="error">{error}</span>
       <button data-testid="reload" onClick={reload}>Try again</button>
     </div>
