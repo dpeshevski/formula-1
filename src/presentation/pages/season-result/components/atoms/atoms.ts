@@ -1,7 +1,6 @@
 import { atom } from 'recoil';
 
 import { GetChampionForYear, GetResultsForYear } from '@/domain/usecases';
-import { Driver } from '@/interface/driver';
 
 const state = {
   key: 'getSeasonResultState',

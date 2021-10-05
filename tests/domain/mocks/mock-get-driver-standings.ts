@@ -1,5 +1,3 @@
-import faker from 'faker';
-
 import { GetDriverStandings } from '@/domain/usecases';
 
 export const mockGetDriverStandingsModel = (): GetDriverStandings.Model => ({

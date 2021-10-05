@@ -3,9 +3,7 @@ import React from 'react';
 import useStyles from './list-styles.scss';
 
 import { GetDriverStandings } from '@/domain/usecases';
-import { Item } from '@/presentation/pages/season-list/components' 
-
-import { Loading } from '@/presentation/components'
+import { Item } from '@/presentation/pages/season-list/components';
 
 type Props = {
   mrData: GetDriverStandings.Model,

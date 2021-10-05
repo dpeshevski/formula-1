@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { GetResultsForYear, GetChampionForYear } from '@/domain/usecases';
 import { SeasonResultItem } from '@/presentation/pages/season-result/components'
 import useStyles from './list-styles.scss';
-import { Loading, } from '@/presentation/components';
 import { IconName, Icon } from '@/presentation/components';
 
 type Props = {

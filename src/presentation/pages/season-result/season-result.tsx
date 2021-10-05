@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useRecoilState, useSetRecoilState, useResetRecoilState } from 'recoil';
+import { useRecoilState, useResetRecoilState } from 'recoil';
 
 import { GetResultsForYear, GetChampionForYear } from '@/domain/usecases';
 import { SeasonResultData, getSeasonResultState } from '@/presentation/pages/season-result/components';

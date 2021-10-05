@@ -1,6 +1,3 @@
-import { Header } from '@/presentation/components'
-import { renderWithHistory } from '@/tests/presentation/mocks'
-
 import { createMemoryHistory, MemoryHistory } from 'history'
 
 type SutTypes = {

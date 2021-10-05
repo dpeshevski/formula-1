@@ -28,16 +28,12 @@ describe('HttpClientDecorator', () => {
     const httpRequest: HttpRequest = {
       url: faker.internet.url(),
       method: faker.random.arrayElement(['get', 'GET']),
-      // headers: {
-      //   'Content-Type': 'application/json'
-      // }
     }
 
     await sut.request(httpRequest);
 
     expect(httpClientSpy.url).toBe(httpRequest.url);
     expect(httpClientSpy.method).toBe(httpRequest.method);
-    // expect(httpClientSpy.headers).toEqual(httpRequest.headers);
   })
 
   test('Should add headers to HttpClient', async () => {
@@ -52,30 +48,7 @@ describe('HttpClientDecorator', () => {
 
     expect(httpClientSpy.url).toBe(httpRequest.url);
     expect(httpClientSpy.method).toBe(httpRequest.method);
-    // expect(httpClientSpy.headers).toEqual({'Content-Type': 'application/json'})
   })
-
-  // test('Should merge headers to HttpClientSpy', async () => {
-  //   const { sut, httpClientSpy} = makeSut();
-  //   const field = faker.random.words();
-
-  //   const httpRequest: HttpRequest = {
-  //     url: faker.internet.url(),
-  //     method: faker.random.arrayElement(['get', 'GET']),
-  //     headers: {
-  //       field
-  //     }
-  //   }
-
-  //   await sut.request(httpRequest);
-
-  //   expect(httpClientSpy.url).toBe(httpRequest.url);
-  //   expect(httpClientSpy.method).toBe(httpRequest.method);
-  //   expect(httpClientSpy.headers).toEqual({
-  //     field,
-  //     'Content-Type': 'application/json'
-  //   })
-  // })
 
   test('Should return the same result as HttpClient', async () => {
     const { sut, httpClientSpy} = makeSut();

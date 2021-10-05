@@ -1,8 +1,6 @@
-import * as Helper from '../utils/helpers';
 import * as Http from '../utils/http-mocks';
 
 const path = /\/(driverStandings.+)/
-// const path = '/driverStandings/1.json?offset=55&limit=11';
 
 const mockUnexpectedError = (): void => Http.mockUnexpectedError(path, 'GET');
 const mockSuccess = (): void => Http.mochSuccess(path, 'GET', 'load-season-list');

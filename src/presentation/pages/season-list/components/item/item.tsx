@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-
-import { GetDriverStandings } from '@/domain/usecases';
 import { Calendar } from '@/presentation/components';
 import { DriverStanding } from '@/interface/driver-standing';
 

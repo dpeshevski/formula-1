@@ -1,5 +1,4 @@
 import { SeasonResult } from '@/presentation/pages'
-import { getSeasonResultState } from '@/presentation/pages/season-result/components'
 import { UnexpectedError } from '@/domain/errors'
 import { GetResultsForYearSpy, GetChampionForYearSpy, mockGetResultsForYearModel, mockGetChampionForYearModel } from '@/tests/domain/mocks'
 import { renderWithHistory } from '@/tests/presentation/mocks'
