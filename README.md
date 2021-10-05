@@ -1,6 +1,6 @@
 # Formula 1 - World Champions
 
-In this application you can see the list of winners from 2005 to 2015. The years are shown as timeline in descending order. When clicking on one item, season page is shown with all rounds for selected year. Additionally, the world champion for the selected year, will be highlighed on each card/round that he won that year.
+In this application you can see the list of winners from 2005 to 2015. The years are shown as card. When clicking on one item (view details button), season page is shown with all rounds for selected year. Additionally, the world champion for the selected year, will be highlighed on each card/round that he won that year.
 
 The application is developed using React Library and it uses the latest version (17.0.2).
 
